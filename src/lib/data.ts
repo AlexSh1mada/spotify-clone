@@ -64,6 +64,24 @@ export const playlists: Playlist[] = [
       "https://f4.bcbits.com/img/a0363730459_16.jpg",
     artists: ["WFS", "Nadav Cohen"],
   },
+  {
+    id: "7",
+    albumId: 7,
+    title: "Trap Vibes",
+    color: colors.rose,
+    cover:
+      "https://res.cloudinary.com/dp3ppkxo5/image/upload/v1693776175/spotify-astro/playlist_3_grshca.jpg",
+    artists: ["Post Malone", "Travis Scott", "21 savage"],
+  },
+  {
+    id: "8",
+    albumId: 8,
+    title: "Electronic Party",
+    color: colors.teal,
+    cover:
+      "https://res.cloudinary.com/dp3ppkxo5/image/upload/v1693776174/spotify-astro/playlist_1_yci5uf.jpg",
+    artists: ["Avicii", "Alok"],
+  },
 ];
 
 export const morePlaylists = playlists.map((item) => ({
@@ -317,5 +335,32 @@ export const songs: Song[] = [
     "artists": ["LoFi Dreamer"],
     "album": "Chill Lo-Fi Music",
     "duration": "4:20"
+  },
+  {
+    "id": 1,
+    "albumId": 7,
+    "title": "Saint-Tropez",
+    "image": `https://res.cloudinary.com/dp3ppkxo5/image/upload/v1693776175/spotify-astro/song_2_cijs8v.jpg`,
+    "artists": ["Post Malone"],
+    "album": "Hollywood's Bleeding",
+    "duration": "2:23",
+  },
+  {
+    "id": 3,
+    "albumId": 7,
+    "title": "SICKO MODE",
+    "image": `https://res.cloudinary.com/dp3ppkxo5/image/upload/v1693776176/spotify-astro/song_3_td9ncs.jpg`,
+    "artists": ["Travis Scott", "Drake"],
+    "album": "ASTROWORLD",
+    "duration": "5:13",
+  },
+  {
+    "id": 4,
+    "albumId": 7,
+    "title": "Blinding Lights",
+    "image": `https://res.cloudinary.com/dp3ppkxo5/image/upload/v1693776176/spotify-astro/song_4_lwumgu.png`,
+    "artists": ["The Weeknd"],
+    "album": "After Hours",
+    "duration": "3:22",
   },
 ]

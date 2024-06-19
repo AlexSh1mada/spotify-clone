@@ -1,11 +1,26 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import { playlists } from "../lib/data";
+import PlaylistItemCard from "../components/PlaylistItemCard.astro";
 ---
 
 <Layout title="Definetly Not Spotify">
-	
+	<div
+		id="playlist-container"
+		class="relative transition-all duration-1000 bg-[#222222]"
+		style="min-height:300px;--context-color:#20125A;"
+	>
+		<!-- <PageHeader /> -->
+		<div class="relative z-10 px-6">
+			<!-- Greeting -->Hola
+			<div
+				class="grid gap-y-2 gap-x-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-2 mt-6"
+			>
+				{playlists.map((playlist) => <PlaylistItemCard playlist={playlist} />)}
+			</div>
+		</div>
+        
+	</div>
 </Layout>
 
-<style>
-
-</style>
+<style></style>
