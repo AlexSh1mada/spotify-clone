@@ -70,7 +70,7 @@ export const playlists: Playlist[] = [
     title: "Trap Vibes",
     color: colors.rose,
     cover:
-      "https://res.cloudinary.com/dp3ppkxo5/image/upload/v1693776175/spotify-astro/playlist_3_grshca.jpg",
+      "https://miro.medium.com/v2/resize:fit:1024/0*NqXYLlT5jxlH6c-R.jpeg",
     artists: ["Post Malone", "Travis Scott", "21 savage"],
   },
   {
@@ -79,7 +79,7 @@ export const playlists: Playlist[] = [
     title: "Electronic Party",
     color: colors.teal,
     cover:
-      "https://res.cloudinary.com/dp3ppkxo5/image/upload/v1693776174/spotify-astro/playlist_1_yci5uf.jpg",
+      "https://i.scdn.co/image/ab67706c0000da84a099bf920d36938aa7b7d17e",
     artists: ["Avicii", "Alok"],
   },
 ];
