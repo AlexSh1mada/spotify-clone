@@ -7,36 +7,36 @@ import SideMenuCard from "./SideMenuCard.astro";
 
 import { playlists } from "../lib/data";
 ---
-<nav class="flex flex-col flex-1 gap-2">
-    <div class="bg-[#121212] rounded-lg p-2">
-        <ul>
-            <SideMenuItem href="/">
-                <HomeIcon />
-                <div class= "pl-1">
-                    Home
-                </div>
-            </SideMenuItem>
 
-            <SideMenuItem href="#">
-                <SearchIcon />
-                <div class= "pl-1">
-                    Search
-                </div>
-            </SideMenuItem>
-        </ul>
-    </div>
+<nav class="flex flex-col flex-1 h-full gap-2">
+	<div class="bg-[#121212] rounded-lg p-2">
+		<ul>
+			<SideMenuItem href="/">
+				<HomeIcon />
+				<div class="pl-1">Home</div>
+			</SideMenuItem>
 
-    <div class="bg-[#121212] rounded-lg pl-2 pt-1 flex-1">
-        <ul>
-            <SideMenuItem href="#">
-                <LibraryIcon />
-                <div>
-                    Your Library
-                </div>
-            </SideMenuItem>
-            {
-                playlists.map(playlist => <SideMenuCard playlist={playlist} />)
-            }
-        </ul>
-    </div>
+			<SideMenuItem href="#">
+				<SearchIcon />
+				<div class="pl-1">Search</div>
+			</SideMenuItem>
+		</ul>
+	</div>
+	<div class="bg-[#121212] rounded-lg pl-2 pt-1 flex-1 overflow-y-auto">
+		<div class="flex-1">
+			<ul>
+				<div class="pt-2">
+					<SideMenuItem href="#">
+						<LibraryIcon />
+						Your Library
+					</SideMenuItem>
+				</div>
+				<div class="flex-1 overflow-y-auto">
+					{
+                        playlists.map((playlist) => <SideMenuCard playlist={playlist} />)
+                    }
+				</div>
+			</ul>
+		</div>
+	</div>
 </nav>
