@@ -1,0 +1,62 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { allPlaylists, songs } from "@/lib/data";
+import PlaylistItemCard from "@/components/PlaylistItemCard.astro";
+import PlaylistCard from "@/components/PlaylistCard.astro";
+
+const { id } = Astro.params;
+
+const playlist = allPlaylists.find((playlist) => playlist.id === id);
+const playlistSongs = songs.filter(
+	(song) => song.albumId === playlist?.albumId
+);
+---
+
+<Layout title="Definetly Not Spotify">
+	<div
+		id="playlist-container"
+		class="relative flex flex-col h-full bg-[#222222] overflow-x-hidden"
+		style="min-height:300px;--context-color:#20125A;"
+		transition:name=`playlist ${id} box`
+	>
+		<!-- <PageHeader /> -->
+
+		<header class="flex flex-row gap-4 px-6 pl-4 pt-24 mt-2">
+			<picture class="size-32 flex-none">
+				<img
+					src={playlist?.cover}
+					alt=`Cover of ${playlist?.title}`
+					class="object-cover size-full rounded shadow-[5px_0_30px_0px_rgba(0,0,0,0.3)]"
+					transition:name=`playlist ${playlist?.id} image`
+				/>
+			</picture>
+
+			<div class="flex flex-col justify-between">
+				<h2 class="flex flex-1 items-end mb-4 text-sm">Playlist</h2>
+				<div>
+					<h1 class="text-6xl font-bold block text-white mb-4">
+						{playlist?.title}
+						<span transition:name=`playlist ${playlist?.id} title`></span>
+					</h1>
+				</div>
+				<div class="flex-1 flex items-end">
+					<div class="text-sm">
+						<div>
+							<span class="font-semibold">{playlist?.artists.join(", ")}</span>
+							<span class="text-gray-300">about 3 hr 15 min</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<div class="relative z-10 px-6"></div>
+		<div
+			class="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/80 -z-10"
+		>
+		</div>
+	</div>
+	<div class="px-6 relative z-10"></div>
+</Layout>
+
+<style></style>
