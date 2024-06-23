@@ -90,6 +90,7 @@ export function Player() {
 			<div className="grid place-content-center">
                 <Slider
                  defaultValue={[100]}
+                 max={100}
                  min={0}
                  className="w-[95px]"
                  step={1}
