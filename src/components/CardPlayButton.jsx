@@ -17,7 +17,7 @@ export function CardPlayButton ({ id }) {
             return
         }
 
-        fetch(`/src/api/get-playlist-info.json?id=${id}`)
+        fetch(`/api/get-playlist-info.json?id=${id}`)
         .then(response => response.json())
         .then(data => {
             const { songs, playlist } = data
@@ -25,6 +25,7 @@ export function CardPlayButton ({ id }) {
             setIsPlaying(true)
             setCurrentMusic({ songs, playlist, song: songs[0] })
         })
+        .catch(error => console.error('Error fetching playlist info:', error));
     }
 
 

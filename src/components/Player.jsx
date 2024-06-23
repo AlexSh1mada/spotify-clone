@@ -27,50 +27,68 @@ export const Play = ({ className }) => (
 	</svg>
 );
 
+const CurrentSong = ({ image, title, artists }) => {
+	return (
+		<div
+			className={`
+            flex items-center gap-5 relative
+            overflow-hidden
+        `}
+		>
+			<picture className="size-14 bg-zinc-800 rounded-md overflow-hidden">
+				<img src={image} alt={title} />
+			</picture>
+			<div className="flex flex-col">
+				<h3 className="text-sm block">{title}</h3>
+				<h4 className="text-xs block text-zinc-400">
+                    { artists?.join(",") }
+                </h4>
+			</div>
+		</div>
+	);
+};
+
 export function Player() {
-    const { currentMusic, isPlaying, setIsPlaying } = usePlayerStore(state => state)
-    const audioRef = useRef()
+	const { currentMusic, isPlaying, setIsPlaying } = usePlayerStore(
+		(state) => state
+	);
+	const audioRef = useRef();
 
+	useEffect(() => {
+		isPlaying ? audioRef.current.play() : audioRef.current.pause();
+	}, [isPlaying]);
 
-    useEffect(() => {
-        isPlaying 
-        ? audioRef.current.play()
-        : audioRef.current.pause()
-    }, [isPlaying])
+	useEffect(() => {
+		const { song, playlist, songs } = currentMusic;
 
-    useEffect(() => {
-        const { song, playlist, songs } = currentMusic
+		if (song) {
+			const src = `/music/${playlist?.id}/0${song.id}.mp3`;
+			audioRef.current.src = src;
+			audioRef.current.play();
+		}
+	}, [currentMusic]);
 
-        if(song) {
-            const src = `/public/music/${playlist.id}/0${song.id}.mp3`
-            audioRef.current.src = src
-            audioRef.current.play()
-        }
-    }, [currentMusic])
+	const handleClick = () => {
+		setIsPlaying(!isPlaying);
+	};
 
-    const handleClick = () => {
-        setIsPlaying(!isPlaying)
-    }
+	return (
+		<div className="flex flex-row justify-between w-full px-2 z-50">
+			<div>
+				<CurrentSong {...currentMusic.song} />
+			</div>
 
-    return (
-        <div className="flex flex-row justify-between w-full px-2 z-50">
-            <div>
-                CurrentSong...
-            </div>  
+			<div className="grid place-content-center gap-4 flex-1">
+				<div className="flex justify-center">
+					<button className="bg-white rounded-full p-2" onClick={handleClick}>
+						{isPlaying ? <Pause /> : <Play />}
+					</button>
+				</div>
+			</div>
 
-            <div className="grid place-content-center gap-4 flex-1">
-                <div className="flex justify-center">
-                    <button className="bg-white rounded-full p-2" onClick={handleClick}>
-                        {isPlaying ? <Pause /> : <Play />}
-                    </button>
-                </div>
-            </div>
+			<div className="grid place-content-center">Volume</div>
 
-            <div className="grid place-content-center">
-                Volume
-            </div>
-
-            <audio ref={audioRef}/>
-        </div>
-    )
+			<audio ref={audioRef} />
+		</div>
+	);
 }
