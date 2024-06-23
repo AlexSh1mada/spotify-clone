@@ -1,5 +1,6 @@
 ---
 import { type Playlist } from "../lib/data";
+import { CardPlayButton } from "./CardPlayButton";
 
 interface Props {
 	playlist: Playlist;
@@ -29,9 +30,7 @@ const artistsString = artists.join(", ");
 	</picture>
 
 	<div class="flex flex-auto flex-col truncate">
-		<h4
-			class="font-bold block text-sm truncate text-wrap mr-4"
-		>
+		<h4 class="font-bold block text-sm truncate text-wrap mr-4">
 			{title}
 		</h4>
 	</div>
