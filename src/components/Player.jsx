@@ -92,7 +92,7 @@ export function Player() {
                  defaultValue={[100]}
                  max={100}
                  min={0}
-                 className="w-[95px]"
+                 className="w-[100px]"
                  step={1}
                  onValueChange={(value) => {
                     const newVolume = value
