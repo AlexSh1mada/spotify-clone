@@ -3,6 +3,8 @@ import Layout from "@/layouts/Layout.astro";
 import { allPlaylists, songs } from "@/lib/data";
 import PlaylistItemCard from "@/components/PlaylistItemCard.astro";
 import PlaylistCard from "@/components/PlaylistCard.astro";
+import SongsTable from "@/components/SongsTable.astro";
+import { CardPlayButton } from "@/components/CardPlayButton";
 
 const { id } = Astro.params;
 
@@ -16,13 +18,12 @@ const playlistSongs = songs.filter(
 	<div
 		id="playlist-container"
 		class="relative flex flex-col h-full bg-[#222222] overflow-x-hidden"
-		style="min-height:300px;--context-color:#20125A;"
 		transition:name=`playlist ${id} box`
 	>
 		<!-- <PageHeader /> -->
 
 		<header class="flex flex-row gap-4 px-6 pl-4 pt-24 mt-2">
-			<picture class="size-32 flex-none">
+			<picture class="size-36 flex-none">
 				<img
 					src={playlist?.cover}
 					alt=`Cover of ${playlist?.title}`
@@ -39,10 +40,15 @@ const playlistSongs = songs.filter(
 						<span transition:name=`playlist ${playlist?.id} title`></span>
 					</h1>
 				</div>
-				<div class="flex-1 flex items-end">
+
+				<div class="flex-1 flex-col items-end">
 					<div class="text-sm">
-						<div>
-							<span class="font-semibold">{playlist?.artists.join(", ")}</span>
+						<div transition:name=`playlist ${playlist?.id} artists`>
+							<span
+								>{playlist?.artists.join(", ")}
+								<span class="text-xs"> • </span></span
+							>
+							<span class="text-white">{playlistSongs.length} songs</span>,
 							<span class="text-gray-300">about 3 hr 15 min</span>
 						</div>
 					</div>
@@ -50,13 +56,20 @@ const playlistSongs = songs.filter(
 			</div>
 		</header>
 
+
+		<div class="pl-6 pt-6">
+			  <CardPlayButton client:load id={id} size="large" />
+		</div>
+
 		<div class="relative z-10 px-6"></div>
-		<div
+		
+		<!-- <div
 			class="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/80 -z-10"
 		>
-		</div>
-	</div>
-	<div class="px-6 relative z-10"></div>
-</Layout>
+		</div> -->
 
-<style></style>
+		<section class="p-4 mt-12">
+			<SongsTable songs={playlistSongs} />
+		</section>
+	</div>
+</Layout>

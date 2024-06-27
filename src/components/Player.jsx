@@ -73,30 +73,42 @@ const SongControl = ({ audio }) => {
 		return () => {
 			audio.current.removeEventListener('timeupdate', handleTimeUpdate)
 		}
-	})
+	}, [])
 
 	const handleTimeUpdate = () => {
 		setCurrentTime(audio.current.currentTime)
 	}
 
+	const formatTime = time => {
+		if (time == null) return `0:00`
+
+		const minutes = Math.floor(time / 60)
+		const seconds = Math.floor(time % 60)
+
+		return `${minutes}:${seconds.toString().padStart(2, '0')}`
+		
+	}
+
 	const duration = audio?.current?.duration ?? 0
 
 	return (
-		<div className="flex gap-x-2">
-			<span>{currentTime}</span>
+		<div className="flex gap-x-2 font-extralight text-xs pt-2">
+			<span className="opacity-70 w-12 text-right	">{formatTime(currentTime)}</span>
 				<Slider
 						defaultValue={[0]}
 						value={[currentTime]}
 						max={audio?.current?.duration ?? 0}
 						min={0}
-						className="w-[510px]"
+						className="w-[380px]"
 						step={1}
 						onValueChange={(value) => {
 							audio.current.currentTime = value
 						setVolume(volumeValue)
 					}}   
 				/>
-			<span>{duration}</span>
+			<span className="opacity-70 w-12">
+				{duration ? formatTime(duration) : '0:00'}
+			</span>
 		</div>
 	)
 }
@@ -173,7 +185,7 @@ export function Player() {
 
 	return (
 		<div className="flex flex-row justify-between w-full px-2 z-50">
-			<div>
+			<div className="w-[280px]">
 				<CurrentSong {...currentMusic.song} />
 			</div>
 
