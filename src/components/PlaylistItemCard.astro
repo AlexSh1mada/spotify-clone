@@ -13,25 +13,31 @@ const { id, cover, title, artists, color } = playlist;
 const artistsString = artists.join(", ");
 ---
 
-<a
-	href={`/playlist/${id}`}
-	class="playlist-item flex group relative transition-all
+<article class="group relative">
+	<div
+		class={"absolute right-1 mt-[3px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"}
+	>
+		<CardPlayButton id={id} client:visible size="mini" />
+	</div>
+	<a
+		href={`/playlist/${id}`}
+		class="playlist-item flex group relative transition-all
            duration-300 overflow-hidden items-center gap-5 rounded
          bg-[#414142]/30 hover:bg-[#545555]/50"
-	transition:name=`playlist ${id} box`
->
-	<picture class="size-12 flex-none">
-		<img
-			src={cover}
-			alt=`Cover of ${title} by ${artistsString}`
-			class="object-cover size-full rounded-l"
-			transition:name=`playlist ${id} image`
-		/>
-	</picture>
-
-	<div class="flex flex-auto flex-col truncate">
-		<h4 class="font-bold block text-sm truncate text-wrap mr-4">
-			{title}
-		</h4>
-	</div>
-</a>
+		transition:name=`playlist ${id} box`
+	>
+		<picture class="size-12 flex-none">
+			<img
+				src={cover}
+				alt=`Cover of ${title} by ${artistsString}`
+				class="object-cover size-full rounded-l"
+				transition:name=`playlist ${id} image`
+			/>
+		</picture>
+		<div class="flex flex-auto flex-col truncate -ml-3 pr-2">
+			<h4 class="font-bold text-sm truncate text-wrap mr-4 text-left pr-6">
+				{title}
+			</h4>
+		</div>
+	</a>
+</article>

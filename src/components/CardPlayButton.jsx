@@ -29,10 +29,10 @@ export function CardPlayButton ({ id, size = 'small' }) {
     }
 
 
-    const iconClassName = size === 'small' ? 'size-4' : 'size-6'
+    const iconClassName = size === 'small' ? 'size-4' : size === 'large' ? 'size-6' : 'size-2.5' 
 
    return (
-    <button onClick={handleClick} className="card-play-button rounded-full bg-[#1ED760] p-4 hover:scale-105 hover:bg-[#1FDF64]">
+    <button onClick={handleClick} className="card-play-button rounded-full shadow-md shadow-black/40 bg-[#1ED760] p-4 hover:scale-105 hover:bg-[#1FDF64]">
         { isPlayingPlaylist ? <Pause className={iconClassName} /> : <Play className={iconClassName} /> }
     </button>
    ) 
